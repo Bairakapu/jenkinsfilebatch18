@@ -6,8 +6,8 @@ node
       echo "Jenkins Node Name ${env.NODE_NAME}"
   
       echo "Jenkins Home ${env.JENKINS_HOME}"
-      echo "Jenkins URL ${env.JENKINS_URL}"
-      echo "JOB Name ${env.JOB_NAME}"
+      echo "Jenkins URL ${env.http://13.233.16.132:8080/}"
+      echo "JOB Name ${env.pipeline-scriptedway}"
   
 properties([[$class: 'JiraProjectProperty'], buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([pollSCM('* * * * *')])])
 
