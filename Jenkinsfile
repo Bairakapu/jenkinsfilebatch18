@@ -16,7 +16,7 @@ def mavenHome = tool name: "maven3.6.2"
 
 stage('CheckoutCode')
 {
-  git branch: 'development', credentialsId: 'df465b4e-8599-49b0-a2d4-eed216745582', url: 'https://github.com/MithunTechnologiesDevOps/maven-web-application.git'
+  git branch: 'development', credentialsId: '637894c5-5fe6-4f99-8051-0cb517ca4c6d', url: 'https://github.com/Bairakapu/maven-web-application.git'
 }
 
 stage('Build')
@@ -25,7 +25,6 @@ stage('Build')
  sh "${mavenHome}/bin/mvn clean package"
 }
 
-  /*
 stage('SonarQubeReportExecution')
 {
 sh "${mavenHome}/bin/mvn sonar:sonar"
@@ -38,21 +37,10 @@ sh "${mavenHome}/bin/mvn deploy"
 
 stage('DeployAppintoTomcatServer')
 {
- sshagent(['b1483976-b2e8-4c04-83d1-0bc255c511d2']) 
+ sshagent(['dfd1d184-197a-4374-8c77-586bf3c3296c']) 
  {
-   sh "scp -o StrictHostKeyChecking=no  target/maven-web-application.war ec2-user@52.66.211.45:/opt/apache-tomcat-9.0.36/webapps/"
+   sh "scp -o StrictHostKeyChecking=no  target/maven-web-application.war ec2-user@35.154.135.188:/opt/apache-tomcat-9.0.36/webapps/"
  }
 }
-
-stage('EmailNotification')
-{
-mail bcc: 'devopstrainingblr@gmail.com', body: '''Build Over.
-
-Regards,
-Mithun Technologies,
-9980923226''', cc: 'devopstrainingblr@gmail.com', from: '', replyTo: '', subject: 'Build over', to: 'devopstrainingblr@gmail.com'
-}
-
-*/
   
 }
